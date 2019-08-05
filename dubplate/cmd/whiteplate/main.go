@@ -3,11 +3,11 @@
 package main
 
 import (
-	"github.com/glynternet/pkg/cmd"
 	"log"
 	"os"
 	"strings"
 
+	"github.com/glynternet/pkg/cmd"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
