@@ -12,7 +12,8 @@ GOBUILD_CMD ?= $(GOBUILD_ENVVARS) go build $(GOBUILD_FLAGS)
 OS ?= linux
 ARCH ?= amd64
 
-build: $(BINARIES)
+dummy:
+	@echo No default rule set yet
 
 clean:
 	rm $(BUILD_DIR)/*
