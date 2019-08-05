@@ -1,3 +1,5 @@
+// dubplate version: {{DUBPLATE_VERSION}}
+
 package main
 
 import (

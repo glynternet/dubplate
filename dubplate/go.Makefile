@@ -1,3 +1,5 @@
+# dubplate version: {{DUBPLATE_VERSION}}
+
 BUILD_DIR ?= ./bin
 OUTBIN ?= $(BUILD_DIR)/$(APP_NAME)-$(VERSION)
 
