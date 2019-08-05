@@ -21,6 +21,8 @@ func main() {
 	logger := log.New(os.Stderr, "", log.LstdFlags)
 	out := os.Stdout
 
+	cobra.OnInitialize(viperAutoEnvVar)
+
 	var rootCmd = &cobra.Command{
 		Use: appName,
 	}
