@@ -23,4 +23,4 @@ replaceInTmpFiles {{DUBPLATE_VERSION}} "$dubplateVersion"
 replaceInTmpFiles {{REPOSITORY}} "$repository"
 mv -v "$tmpDir/dubplate/cmd/whiteplate" "$tmpDir/dubplate/cmd/$appName"
 
-cp -vr "$tmpDir/dubplate" "$appRootDir"
+cp -vr "$tmpDir/dubplate/." "$appRootDir/"
