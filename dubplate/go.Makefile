@@ -32,7 +32,7 @@ $(BINARIES):
 	$(MAKE) cmd-all \
 		APP_NAME=$@
 
-test-binary-version-output: VERSION_CMD ?= $(OUTBIN) --version
+test-binary-version-output: VERSION_CMD ?= $(OUTBIN) version
 test-binary-version-output:
 	@echo testing output of $(VERSION_CMD)
 	test "$(shell $(VERSION_CMD))" = "$(VERSION)" && echo PASSED
