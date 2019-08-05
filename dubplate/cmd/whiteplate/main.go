@@ -3,6 +3,7 @@
 package main
 
 import (
+	"github.com/glynternet/pkg/cmd"
 	"log"
 	"os"
 	"strings"
@@ -18,11 +19,13 @@ var version = "unknown"
 
 func main() {
 	logger := log.New(os.Stderr, "", log.LstdFlags)
+	out := os.Stdout
 
 	var rootCmd = &cobra.Command{
 		Use: appName,
 	}
 
+	rootCmd.AddCommand(cmd.NewVersionCmd(version, out))
 	buildCmdTree(rootCmd)
 
 	err := viper.BindPFlags(rootCmd.Flags())
