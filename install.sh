@@ -1,4 +1,6 @@
 #!/bin/bash
+set -e
+
 usage="$0 appName appRootDir"
 appName="${1:?appName not set}"
 appRootDir="${2:?appRootDir not set}"
