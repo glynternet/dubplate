@@ -17,3 +17,4 @@ echo Dubplate version: "$dubplateVersion"
 
 replaceInTmpFiles whiteplate "$appName"
 replaceInTmpFiles {{DUBPLATE_VERSION}} "$dubplateVersion"
+mv -v "$tmpDir/dubplate/cmd/whiteplate" "$tmpDir/dubplate/cmd/$appName"
