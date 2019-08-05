@@ -25,6 +25,12 @@ cmd-all: binary test-binary-version-output
 binary: $(BUILD_DIR)
 	$(GOBUILD_CMD) ./cmd/$(APP_NAME)
 
+binaries: $(BINARIES)
+
+$(BINARIES):
+	$(MAKE) cmd-all \
+		APP_NAME=$@
+
 test-binary-version-output: VERSION_CMD ?= $(OUTBIN) --version
 test-binary-version-output:
 	@echo testing output of $(VERSION_CMD)
