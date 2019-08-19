@@ -1,6 +1,5 @@
 # dubplate version: {{DUBPLATE_VERSION}}
 
-BUILD_DIR ?= ./bin
 OUTBIN ?= $(BUILD_DIR)/$(APP_NAME)-$(VERSION)
 
 VERSION_VAR ?= main.version
@@ -14,14 +13,6 @@ ARCH ?= amd64
 
 dummy:
 	@echo No default rule set yet
-
-clean:
-	rm $(BUILD_DIR)/*
-
-$(BUILD_DIR):
-	mkdir -p $@
-
-cmd-all: binary test-binary-version-output
 
 binary: $(BUILD_DIR)
 	$(GOBUILD_CMD) ./cmd/$(APP_NAME)
