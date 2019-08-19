@@ -28,7 +28,7 @@ func main() {
 	}
 
 	rootCmd.AddCommand(cmd.NewVersionCmd(version, out))
-	buildCmdTree(rootCmd)
+	buildCmdTree(logger, rootCmd)
 
 	err := viper.BindPFlags(rootCmd.Flags())
 	if err != nil {
