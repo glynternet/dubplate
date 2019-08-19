@@ -1,10 +1,10 @@
 #!/bin/bash
 set -e
 
-usage="$0 appName appRootDir"
-appName="${1:?appName not set}"
-appRootDir="${2:?appRootDir not set}"
-repository="${3:?repository not set}"
+usage="usage: $0 appName appRootDir repo"
+appName="${1:?appName not set. $usage}"
+appRootDir="${2:?appRootDir not set\n$usage}"
+repository="${3:?repository not set\n$usage}"
 
 replaceInTmpFiles(){
 	local placeholder="${1:?placeholder not set}"
