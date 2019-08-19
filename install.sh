@@ -1,30 +1,40 @@
 #!/bin/bash
 set -e
 
-usage="usage: $0 appName appRootDir repo"
-appName="${1:?appName not set. $usage}"
-appRootDir="${2:?appRootDir not set\n$usage}"
-repository="${3:?repository not set\n$usage}"
+usage="usage: $0 appRootDir repo appNames..."
+appRootDir="${1:?appRootDir not set. $usage}"
+repository="${2:?repository not set. $usage}"
+# Check at least one appName is set
+appNameCheck="${3:?appNames not set. $usage}"
 
-replaceInAppFiles(){
-	local appName="${1:?appName not set}"
+replacePlaceholdersInDir(){
+	local dir="${1:?dir not set}"
 	local placeholder="${2:?placeholder not set}"
 	local replacement="${3:?replacement not set}"
-	find "$tmpDir" -type f -exec sed -i "s|$placeholder|$replacement|g" {} +
+	find "$dir" -type f -exec sed -i "s|$placeholder|$replacement|g" {} \;
+}
+
+generateAppCmdDir() {
+	local appName="${1:?appName not set}"
+	local appCmdDir="$tmpDir/dubplate/cmd/$appName"
+	cp -rv "$tmpWhiteplateDir" "$appCmdDir"
+	replacePlaceholdersInDir "$appCmdDir" whiteplate "$appName"
 }
 
 tmpDir="$(mktemp --directory --suffix -dubplate)"
+tmpWhiteplateDir="$tmpDir/dubplate/cmd/whiteplate"
+
 cp -vr ./dubplate "$tmpDir"
 
 dubplateVersion="$(make --no-print-directory --directory dubplate --file dubplate.Makefile version)"
 echo Dubplate version: "$dubplateVersion"
 
-tmpWhiteplateDir="$tmpDir/dubplate/cmd/whiteplate"
-cp -rv "$tmpWhiteplateDir" "$tmpDir/dubplate/cmd/$appName"
-replaceInAppFiles "$appName" whiteplate "$appName"
-replaceInAppFiles "$appName" {{DUBPLATE_VERSION}} "$dubplateVersion"
-replaceInAppFiles "$appName" {{REPOSITORY}} "$repository"
+replacePlaceholdersInDir "$tmpDir" {{DUBPLATE_VERSION}} "$dubplateVersion"
+replacePlaceholdersInDir "$tmpDir" {{REPOSITORY}} "$repository"
+
+for appName in "${@:3}"; do
+	generateAppCmdDir "$appName"
+done
 
 rm -rf "$tmpWhiteplateDir"
-
 cp -vr "$tmpDir/dubplate/." "$appRootDir/"
