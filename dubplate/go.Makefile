@@ -1,6 +1,6 @@
 # dubplate version: {{DUBPLATE_VERSION}}
 
-OUTBIN ?= $(BUILD_DIR)/$(APP_NAME)-$(VERSION)
+OUTBIN ?= $(BUILD_DIR)/$(APP_NAME)
 
 VERSION_VAR ?= main.version
 LDFLAGS = -ldflags "-w -X $(VERSION_VAR)=$(VERSION)"

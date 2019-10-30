@@ -10,7 +10,7 @@ image: Dockerfile.$(APP_NAME) check-docker-username
 	docker build \
 		--tag $(DOCKER_USERNAME)/$(APP_NAME):$(VERSION) \
 		-f $(BUILD_DIR)/Dockerfile.$(APP_NAME) \
-		./bin
+		$(BUILD_DIR)
 
 check-docker-username:
 ifndef DOCKER_USERNAME
