@@ -5,6 +5,8 @@ UNTRACKED ?= $(shell test -z "$(shell git ls-files --others --exclude-standard "
 VERSION ?= $(shell git describe --tags --dirty --always)$(UNTRACKED)
 
 BUILD_DIR ?= ./build/$(VERSION)
+OS ?= linux
+ARCH ?= amd64
 
 $(BUILD_DIR):
 	mkdir -p $@
