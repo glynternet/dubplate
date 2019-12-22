@@ -24,7 +24,7 @@ generateAppCmdDir() {
 tmpDir="$(mktemp --directory --suffix -dubplate)"
 tmpWhiteplateDir="$tmpDir/dubplate/cmd/whiteplate"
 
-echo "Copying tepmlates"
+echo "Copying templates"
 cp -vr ./dubplate "$tmpDir"
 
 dubplateVersion="$(make --no-print-directory --directory dubplate --file dubplate.Makefile version)"
