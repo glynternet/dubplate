@@ -24,6 +24,7 @@ generateAppCmdDir() {
 tmpDir="$(mktemp --directory --suffix -dubplate)"
 tmpWhiteplateDir="$tmpDir/dubplate/cmd/whiteplate"
 
+echo "Copying tepmlates"
 cp -vr ./dubplate "$tmpDir"
 
 dubplateVersion="$(make --no-print-directory --directory dubplate --file dubplate.Makefile version)"
@@ -33,8 +34,12 @@ replacePlaceholdersInDir "$tmpDir" {{DUBPLATE_VERSION}} "$dubplateVersion"
 replacePlaceholdersInDir "$tmpDir" {{REPOSITORY}} "$repository"
 
 for appName in "${@:3}"; do
+	echo "Generating $appName"
 	generateAppCmdDir "$appName"
 done
 
-rm -rf "$tmpWhiteplateDir"
+echo "Moving generated files"
 cp -vr "$tmpDir/dubplate/." "$appRootDir/"
+
+echo "Removing temporary files"
+rm -vrf "$tmpWhiteplateDir"
