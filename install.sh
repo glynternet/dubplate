@@ -38,8 +38,8 @@ for appName in "${@:3}"; do
 	generateAppCmdDir "$appName"
 done
 
+echo "Removing temporary whiteplate files"
+rm -rf "$tmpWhiteplateDir"
+
 echo "Moving generated files"
 cp -vr "$tmpDir/dubplate/." "$appRootDir/"
-
-echo "Removing temporary files"
-rm -vrf "$tmpWhiteplateDir"
