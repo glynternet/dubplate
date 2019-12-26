@@ -2,8 +2,8 @@
 
 workspace:
 
-  base: /go
-  path: src/{{REPOSITORY}}
+  base: /go/src
+  path: {{REPOSITORY}}
 
 
 pipeline:
