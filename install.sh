@@ -1,11 +1,13 @@
 #!/bin/bash
 set -e
 
-usage="usage: $0 appRootDir repo appNames..."
+usage="usage: $0 appRootDir configFile"
 appRootDir="${1:?appRootDir not set. $usage}"
-repository="${2:?repository not set. $usage}"
+configFile="${2:?configFile not set. $usage}"
+
+repository="$(yq -r .repo "$configFile")"
 # Check at least one appName is set
-appNameCheck="${3:?appNames not set. $usage}"
+appNames="$(yq -r .apps[] "$configFile")"
 
 replacePlaceholdersInDir(){
 	local dir="${1:?dir not set}"
@@ -33,7 +35,7 @@ echo Dubplate version: "$dubplateVersion"
 replacePlaceholdersInDir "$tmpDir" {{DUBPLATE_VERSION}} "$dubplateVersion"
 replacePlaceholdersInDir "$tmpDir" {{REPOSITORY}} "$repository"
 
-for appName in "${@:3}"; do
+for appName in $appNames; do
 	echo "Generating $appName"
 	generateAppCmdDir "$appName"
 done
