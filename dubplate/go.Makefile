@@ -4,7 +4,7 @@ OUTBIN ?= $(BUILD_DIR)/$(APP_NAME)
 
 VERSION_VAR ?= main.version
 LDFLAGS = -ldflags "-w -X $(VERSION_VAR)=$(VERSION)"
-GOBUILD_FLAGS ?= -installsuffix cgo -a $(LDFLAGS) -o $(OUTBIN)
+GOBUILD_FLAGS ?= -installsuffix cgo $(LDFLAGS) -o $(OUTBIN)
 GOBUILD_ENVVARS ?= CGO_ENABLED=0 GOOS=$(OS) GOARCH=$(ARCH)
 GOBUILD_CMD ?= $(GOBUILD_ENVVARS) go build $(GOBUILD_FLAGS)
 
