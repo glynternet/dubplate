@@ -16,9 +16,9 @@ pipeline:
   # drone mounts the root directory of the repository to the container and sets
   # it as the working directory
   run-linters:
-    image: glynhanmer/go-linters:1.13.6-alpine3.11-v0.2.1
-    environment:
-      - CONCURRENCY=2
+    image: golangci/golangci-lint:v1.22.2-alpine
+    commands:
+      - golangci-lint run -v
 
   build-binaries:
     image: golang:1.13.6
