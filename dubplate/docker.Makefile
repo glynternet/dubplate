@@ -12,6 +12,12 @@ image: Dockerfile.$(APP_NAME) check-docker-username
 		-f $(BUILD_DIR)/Dockerfile.$(APP_NAME) \
 		$(BUILD_DIR)
 
+images: $(COMPONENTS:=-image)
+
+$(COMPONENTS:=-image):
+	$(MAKE) image \
+		APP_NAME=$(@:-image=)
+
 check-docker-username:
 ifndef DOCKER_USERNAME
 	$(error DOCKER_USERNAME var not defined)

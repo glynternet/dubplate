@@ -24,6 +24,9 @@ pipeline:
     image: golang:1.13.6
     commands:
       - make binaries
-    # set DOCKER_USERNAME if using docker.Makefile
+
+  # images are not yet supported
+  # build-images:
+    # image: HMMMMMMMMM
     # environment:
       # - DOCKER_USERNAME=

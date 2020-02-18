@@ -18,7 +18,9 @@ clean:
 version:
 	@echo ${VERSION}
 
-cmd-all: binary test-binary-version-output image
+all: binaries images
+
+component-all: binary test-binary-version-output image
 
 image:
 	@echo skipping image build...
