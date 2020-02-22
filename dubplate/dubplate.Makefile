@@ -9,6 +9,8 @@ ARCH ?= amd64
 
 BUILD_DIR ?= ./build/$(VERSION)/$(OS)-$(ARCH)
 
+all: binaries images
+
 $(BUILD_DIR):
 	mkdir -p $@
 
@@ -17,8 +19,6 @@ clean:
 
 version:
 	@echo ${VERSION}
-
-all: binaries images
 
 component-all: binary test-binary-version-output image
 
