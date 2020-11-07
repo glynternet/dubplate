@@ -16,7 +16,7 @@ pipeline:
   # drone mounts the root directory of the repository to the container and sets
   # it as the working directory
   run-linters:
-    image: golangci/golangci-lint:v1.22.2-alpine
+    image: golangci/golangci-lint:v1.32.2-alpine
     commands:
       - golangci-lint run -v
 
