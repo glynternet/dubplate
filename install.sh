@@ -33,6 +33,7 @@ dubplateVersion="$(make --no-print-directory --directory dubplate --file dubplat
 echo Dubplate version: "$dubplateVersion"
 
 replacePlaceholdersInDir "$tmpDir" {{DUBPLATE_VERSION}} "$dubplateVersion"
+replacePlaceholdersInDir "$tmpDir" {{GO_VERSION}} "1.15.4"
 replacePlaceholdersInDir "$tmpDir" {{REPOSITORY}} "$repository"
 
 for appName in $appNames; do

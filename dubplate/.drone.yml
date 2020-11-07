@@ -9,7 +9,7 @@ workspace:
 pipeline:
 
   run-unit-tests:
-    image: golang:1.13.6
+    image: golang:{{GO_VERSION}}
     commands:
       - go test -v -race ./...
 
@@ -21,7 +21,7 @@ pipeline:
       - golangci-lint run -v
 
   build-binaries:
-    image: golang:1.13.6
+    image: golang:{{GO_VERSION}}
     commands:
       - make binaries
 
