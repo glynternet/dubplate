@@ -36,14 +36,14 @@ func main() {
 	if err != nil {
 		_ = logger.Log(
 			log.Message("Unable to BindPFlags"),
-			log.Error(err))
+			log.ErrorMessage(err))
 		os.Exit(1)
 	}
 
 	if err := rootCmd.Execute(); err != nil {
 		_ = logger.Log(
 			log.Message("Error executing root command"),
-			log.Error(err))
+			log.ErrorMessage(err))
 		os.Exit(1)
 	}
 }
