@@ -20,7 +20,7 @@ const appName = "whiteplate"
 var version = "unknown"
 
 func main() {
-	logger := log.NewLogger()
+	logger := log.NewLogger(os.Stderr)
 	out := os.Stdout
 
 	cobra.OnInitialize(viperAutoEnvVar)
